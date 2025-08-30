@@ -3,104 +3,114 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Thầy Trung – Giáo viên Toán | Lớp Toán Chuyên Sâu</title>
-  <meta name="description" content="Trang giới thiệu chính thức của Thầy Trung – Giáo viên Toán. Giới thiệu bản thân, lớp học, thành tích và thông tin liên hệ." />
-  <meta property="og:title" content="Thầy Trung – Giáo viên Toán | Lớp Toán Chuyên Sâu" />
-  <meta property="og:description" content="Trang giới thiệu chính thức của Thầy Trung – Giáo viên Toán. Giới thiệu bản thân, lớp học, thành tích và thông tin liên hệ." />
+  <title>Doraemon Fan Page | Thế giới mèo máy & bảo bối</title>
+  <meta name="description" content="Trang fan giới thiệu Doraemon, bạn bè và các bảo bối nổi tiếng. Hiệu ứng mượt, ảnh minh họa, hoạt cảnh JavaScript vui mắt." />
+  <meta property="og:title" content="Doraemon Fan Page" />
+  <meta property="og:description" content="Cùng khám phá Doraemon, Nobita, Shizuka, Suneo, Jaian và những bảo bối huyền thoại!" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="/og-image.jpg" />
+  <meta property="og:image" content="/assets/og-doraemon.jpg" />
   <meta property="og:locale" content="vi_VN" />
   <meta name="twitter:card" content="summary_large_image" />
   <style>
     :root{
-      --bg:#0f172a;      /* slate-900 */
-      --panel:#0b1220;   
-      --card:#111827;    /* gray-900 */
-      --muted:#94a3b8;   /* slate-400 */
-      --text:#e5e7eb;    /* gray-200 */
-      --brand:#f59e0b;   /* amber-500 */
-      --accent:#22c55e;  /* green-500 */
-      --radius:18px;
-      --shadow:0 10px 30px rgba(0,0,0,.25);
+      --bg1:#0a2540;        /* nền đậm */
+      --bg2:#0f2e57;        /* chuyển sắc */
+      --card:#0b1f39;       /* panel */
+      --text:#e8f3ff;       /* chữ */
+      --muted:#9cc2ff;      /* phụ */
+      --blue:#2aa7ff;       /* xanh Doraemon */
+      --white:#ffffff;
+      --red:#ff3b3b;
+      --yellow:#ffd749;
+      --radius:20px;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:linear-gradient(180deg,var(--panel),var(--bg));color:var(--text);font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;line-height:1.6}
-    a{color:var(--accent);text-decoration:none}
+    html,body{margin:0;padding:0;height:100%;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:var(--text);font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Noto Sans",sans-serif;line-height:1.7;overflow-x:hidden}
+    a{color:#8bddff;text-decoration:none}
     a:hover{text-decoration:underline}
     .container{max-width:1100px;margin:auto;padding:24px}
-    header{position:sticky;top:0;background:rgba(11,18,32,.7);backdrop-filter: blur(10px);border-bottom:1px solid rgba(148,163,184,.15);z-index:50}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
-    .brand .logo{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%,var(--brand),#ef4444);box-shadow:var(--shadow);font-weight:800}
+    header{position:sticky;top:0;background:rgba(12,26,48,.5);backdrop-filter: blur(12px);border-bottom:1px solid rgba(156,194,255,.2);z-index:50}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+    .brand .dot{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--blue),#79d2ff);box-shadow:0 0 0 3px rgba(42,167,255,.25)}
     .nav a{color:var(--text);opacity:.9;padding:10px 12px;border-radius:12px}
-    .nav a:hover{background:rgba(148,163,184,.12);text-decoration:none}
-    .btn{display:inline-block;padding:12px 18px;border-radius:14px;background:linear-gradient(135deg,var(--brand),#ef4444);color:#111827;font-weight:700;box-shadow:var(--shadow)}
-    .btn:hover{filter:brightness(1.05);text-decoration:none}
+    .nav a:hover{background:rgba(156,194,255,.12);text-decoration:none}
+    .btn{display:inline-block;padding:12px 18px;border-radius:14px;background:linear-gradient(135deg,#79d2ff,var(--blue));color:#00223d;font-weight:800;box-shadow:var(--shadow)}
+    .btn:hover{filter:brightness(1.07)}
 
-    .hero{display:grid;grid-template-columns: 1.1fr .9fr;gap:28px;align-items:center;padding:48px 0}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.00));border:1px solid rgba(148,163,184,.18);border-radius:var(--radius);box-shadow:var(--shadow)}
+    #bg{position:fixed;inset:0;z-index:-1}
+
+    .hero{display:grid;grid-template-columns: 1.1fr .9fr;gap:28px;align-items:center;padding:46px 0}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.00));border:1px solid rgba(156,194,255,.25);border-radius:var(--radius);box-shadow:var(--shadow)}
     .hero .left{padding:28px}
-    .eyebrow{color:var(--muted);text-transform:uppercase;letter-spacing:.2em;font-size:.85rem}
+    .eyebrow{color:var(--muted);text-transform:uppercase;letter-spacing:.18em;font-size:.85rem}
     h1{font-size:clamp(28px,4.2vw,46px);line-height:1.15;margin:.2em 0 .3em}
-    .tagline{font-size:clamp(16px,2.1vw,20px);color:#d1d5db}
+    .type{font-weight:700;color:#9dd7ff}
+    .tagline{font-size:clamp(16px,2.1vw,20px);color:#cfe6ff}
     .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:18px}
 
-    .hero .right{padding:0}
-    .photo{aspect-ratio:4/3; width:100%; border-radius:var(--radius); background: url('hero.jpg') center/cover no-repeat, linear-gradient(135deg,#0b1220,#111827); border:1px solid rgba(148,163,184,.18)}
+    .stage{position:relative;aspect-ratio:4/3;width:100%;border-radius:var(--radius);overflow:hidden;border:1px solid rgba(156,194,255,.25)}
+    .stage .glow{position:absolute;inset:-40%;background:radial-gradient(circle at 60% 30%, rgba(42,167,255,.35), transparent 50%),radial-gradient(circle at 30% 70%, rgba(255,215,73,.25), transparent 45%)}
+    .stage svg{position:relative;z-index:2;width:100%;height:100%;display:block}
 
-    .grid{display:grid;grid-template-columns: repeat(3,1fr); gap:18px}
     .section{padding:36px 0}
-    h2{font-size:clamp(22px,3vw,30px);margin:0 0 12px}
-    .kpi{font-size:34px;font-weight:800}
-    .muted{color:var(--muted)}
+    h2{font-size:clamp(22px,3vw,30px);margin:0 0 14px}
+    .grid{display:grid;grid-template-columns: repeat(3,1fr); gap:18px}
+
+    .panel{padding:18px}
+    .card.panel:hover{transform:translateY(-2px)}
 
     .list{display:grid;gap:10px;margin:0;padding:0}
     .list li{list-style:none;display:flex;gap:10px;align-items:flex-start}
-    .list .dot{width:10px;height:10px;margin-top:9px;border-radius:50%;background:linear-gradient(135deg,var(--brand),#ef4444);box-shadow:0 0 0 3px rgba(245,158,11,.15)}
+    .list .dot{width:10px;height:10px;margin-top:9px;border-radius:50%;background:linear-gradient(135deg,var(--yellow),var(--red));box-shadow:0 0 0 3px rgba(255,215,73,.18)}
 
-    .cards{display:grid;grid-template-columns: repeat(3,1fr);gap:18px}
-    .cards .card{padding:18px}
+    .cards{display:grid;grid-template-columns: repeat(5,1fr);gap:16px}
+    .cards .card{padding:16px;transition:transform .25s ease}
 
-    .contact{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
-    .panel{padding:20px}
+    .gall{display:grid;grid-template-columns: repeat(3,1fr); gap:14px}
+    .gall .pic{aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#153458,#0d2541);border:1px solid rgba(156,194,255,.25);position:relative}
+    .gall .pic img{width:100%;height:100%;object-fit:cover;display:block;opacity:.95;transition:transform .6s ease}
+    .gall .pic:hover img{transform:scale(1.06)}
+    .gall .hint{position:absolute;bottom:8px;right:10px;font-size:12px;color:#cfe6ff;background:rgba(10,37,64,.55);padding:4px 8px;border-radius:10px;border:1px solid rgba(156,194,255,.25)}
 
-    footer{padding:28px 0;border-top:1px solid rgba(148,163,184,.18);color:#cbd5e1}
+    .gadgets{position:relative;min-height:120px}
+    .gadget{position:absolute;padding:10px 14px;border-radius:999px;background:linear-gradient(135deg,#79d2ff,var(--blue));color:#00223d;font-weight:800;border:1px solid rgba(156,194,255,.3);box-shadow:var(--shadow);animation:float 6s ease-in-out infinite}
+    .gadget:nth-child(2){left:12%;top:40%;animation-delay:.8s}
+    .gadget:nth-child(3){left:70%;top:20%;animation-delay:1.6s}
+    .gadget:nth-child(4){left:55%;top:68%;animation-delay:2.2s}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 
-    @media (max-width: 880px){
+    .contact{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+
+    footer{padding:28px 0;border-top:1px solid rgba(156,194,255,.25);color:#cfe6ff}
+
+    .reveal{opacity:0;transform:translateY(14px);transition:all .6s ease}
+    .reveal.on{opacity:1;transform:none}
+
+    @media (max-width: 960px){
       .hero{grid-template-columns: 1fr}
       .grid{grid-template-columns: 1fr 1fr}
-      .cards{grid-template-columns: 1fr 1fr}
+      .cards{grid-template-columns: 1fr 1fr 1fr}
       .contact{grid-template-columns:1fr}
     }
-    @media (max-width: 540px){
-      .grid,.cards{grid-template-columns:1fr}
+    @media (max-width: 560px){
+      .grid{grid-template-columns:1fr}
+      .cards{grid-template-columns: 1fr 1fr}
+      .gall{grid-template-columns: 1fr 1fr}
     }
   </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Đức Trung",
-    "jobTitle": "Giáo viên Toán",
-    "url": "https://example.com/",
-    "sameAs": [
-      "https://facebook.com/yourprofile",
-      "https://www.youtube.com/@yourchannel"
-    ]
-  }
-  </script>
 </head>
 <body>
+  <canvas id="bg"></canvas>
   <header>
     <div class="container nav">
-      <div class="brand"><div class="logo">T</div> <span>Thầy Trung</span></div>
+      <div class="brand"><span class="dot"></span><span>Doraemon Fan</span></div>
       <nav>
         <a href="#gioi-thieu">Giới thiệu</a>
-        <a href="#lop-hoc">Lớp học</a>
-        <a href="#thanh-tich">Thành tích</a>
-        <a href="#tai-lieu">Tài liệu</a>
-        <a href="#lien-he">Liên hệ</a>
-        <a class="btn" href="#lien-he">Đặt lịch tư vấn</a>
+        <a href="#nhan-vat">Nhân vật</a>
+        <a href="#bao-boi">Bảo bối</a>
+        <a href="#thu-vien">Thư viện ảnh</a>
       </nav>
     </div>
   </header>
@@ -108,127 +118,182 @@
   <main class="container">
     <section class="hero">
       <div class="left card">
-        <div class="eyebrow">Giáo viên Toán • Lớp Toán Chuyên Sâu</div>
-        <h1>Xin chào, tôi là <span style="color:var(--brand)">Đức Trung</span> —
-          đồng hành giúp học sinh bứt tốc Toán học một cách mạch lạc & hiệu quả.</h1>
-        <p class="tagline">Tư duy rõ – Bài làm gọn – Điểm số thật. Chuyên ôn nền tảng, đội tuyển, và định hướng học tập cá nhân hóa.</p>
+        <div class="eyebrow">Mèo máy đến từ thế kỷ 22</div>
+        <h1><span class="type" id="type"></span></h1>
+        <p class="tagline">Cùng khám phá Doraemon, Nobita, Shizuka, Suneo, Jaian và những bảo bối huyền thoại như <b>Cánh cửa thần kỳ</b>, <b>Chong chóng tre</b>, <b>Đèn pin thu nhỏ</b>…</p>
         <div class="cta">
-          <a class="btn" href="tel:+84xxxxxxxxx">Gọi ngay</a>
-          <a class="btn" style="background:linear-gradient(135deg,var(--accent),#10b981)" href="https://zalo.me/xxxxxxxxx">Chat Zalo</a>
-          <a href="#tai-lieu">Xem tài liệu mẫu →</a>
+          <a class="btn" href="#thu-vien">Xem thư viện ảnh</a>
+          <a class="btn" style="background:linear-gradient(135deg,var(--yellow),#ffc93c)" href="#bao-boi">Bảo bối hot</a>
         </div>
       </div>
       <div class="right">
-        <div class="photo" title="Ảnh minh họa – thay bằng chân dung thật của Thầy"></div>
+        <div class="stage card">
+          <div class="glow"></div>
+          <!-- SVG minh hoạ Doraemon phong cách vector đơn giản (không dùng ảnh có bản quyền) -->
+          <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" aria-label="Minh hoạ Doraemon" id="d-svg">
+            <!-- đầu xanh -->
+            <circle cx="400" cy="260" r="160" fill="#2aa7ff" />
+            <!-- mặt trắng -->
+            <ellipse cx="400" cy="290" rx="140" ry="120" fill="#ffffff" />
+            <!-- mắt -->
+            <circle cx="360" cy="235" r="32" fill="#ffffff" />
+            <circle cx="440" cy="235" r="32" fill="#ffffff" />
+            <circle cx="368" cy="242" r="10" fill="#1b2b44" />
+            <circle cx="432" cy="242" r="10" fill="#1b2b44" />
+            <!-- mũi đỏ -->
+            <circle cx="400" cy="270" r="16" fill="#ff3b3b" />
+            <!-- miệng -->
+            <path d="M330 300 C400 360, 400 360, 470 300" stroke="#e43d3d" stroke-width="4" fill="none"/>
+            <!-- râu -->
+            <g stroke="#1b2b44" stroke-width="3">
+              <line x1="320" y1="270" x2="270" y2="260" />
+              <line x1="320" y1="285" x2="265" y2="285" />
+              <line x1="320" y1="300" x2="270" y2="310" />
+              <line x1="480" y1="270" x2="530" y2="260" />
+              <line x1="480" y1="285" x2="535" y2="285" />
+              <line x1="480" y1="300" x2="530" y2="310" />
+            </g>
+            <!-- cổ chuông -->
+            <rect x="300" y="330" width="200" height="28" rx="14" fill="#ff3b3b" />
+            <circle cx="400" cy="360" r="22" fill="#ffd749" stroke="#caa400" stroke-width="3"/>
+            <circle cx="400" cy="366" r="6" fill="#1b2b44" />
+            <line x1="400" y1="372" x2="400" y2="386" stroke="#caa400" stroke-width="3"/>
+            <!-- thân -->
+            <rect x="330" y="360" width="140" height="120" rx="24" fill="#2aa7ff" />
+            <circle cx="400" cy="420" r="48" fill="#ffffff" />
+          </svg>
+        </div>
       </div>
     </section>
 
-    <section id="gioi-thieu" class="section">
-      <h2>Về tôi</h2>
+    <section id="gioi-thieu" class="section reveal">
+      <h2>Giới thiệu</h2>
       <div class="grid">
         <div class="card panel">
-          <p>Hơn <b>10+</b> năm gắn bó với giáo dục địa phương, tôi xây dựng <i>Lớp Toán Chuyên Sâu</i> với mục tiêu biến Toán thành
-            một hành trình dễ hiểu, thú vị và có chiến lược. Phương châm: <b>Rõ ràng – Kỷ luật – Ấm áp</b>.</p>
-          <ul class="list">
-            <li><span class="dot"></span><span>Cá nhân hoá lộ trình: chẩn đoán lỗ hổng, thiết kế kế hoạch học theo tuần.</span></li>
-            <li><span class="dot"></span><span>Đề cương luyện tập chuẩn cấu trúc đề thi, có đáp án & hướng dẫn chi tiết.</span></li>
-            <li><span class="dot"></span><span>Kèm kỹ năng trình bày, quản lý thời gian, và tâm lý phòng thi.</span></li>
-          </ul>
+          <p><b>Doraemon</b> là chú mèo máy màu xanh đến từ tương lai, quay về quá khứ để hỗ trợ Nobita vượt qua rắc rối bằng những món <i>bảo bối</i> vừa sáng tạo vừa hài hước.</p>
         </div>
         <div class="card panel">
-          <div class="kpi">95%+</div>
-          <div class="muted">Học sinh cải thiện điểm sau 6–8 tuần luyện tập có kế hoạch.</div>
-          <div style="height:10px"></div>
-          <div class="kpi">Top</div>
-          <div class="muted">Nhiều học sinh đỗ chuyên, tăng hạng rõ rệt trong lớp.</div>
+          <p>Thông điệp chính: tình bạn, lòng tốt, sự nỗ lực và trí tưởng tượng. Mỗi bảo bối là một cách nhìn vui nhộn về khoa học & ước mơ.</p>
         </div>
         <div class="card panel">
-          <h3 style="margin-top:0">Chuyên đề mạnh</h3>
           <ul class="list">
-            <li><span class="dot"></span><span>Đại số: phương trình – bất phương trình – hệ – căn bậc hai – tham số.</span></li>
-            <li><span class="dot"></span><span>Hình học: vector, toạ độ Oxy/Oxyz, quỹ tích, hình không gian.</span></li>
-            <li><span class="dot"></span><span>Xác suất – Thống kê: phân phối, phương sai, độ lệch chuẩn.</span></li>
+            <li><span class="dot"></span><span>Nhân vật: Nobita, Shizuka, Suneo, Jaian…</span></li>
+            <li><span class="dot"></span><span>Bảo bối tiêu biểu: Cánh cửa thần kỳ, Chong chóng tre, Túi thần kỳ…</span></li>
+            <li><span class="dot"></span><span>Phong cách: ấm áp – hài hước – giàu trí tưởng tượng.</span></li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section id="lop-hoc" class="section">
-      <h2>Khoá & Lịch học</h2>
-      <div class="cards">
-        <div class="card">
-          <h3 style="margin-top:0">Nền tảng chắc</h3>
-          <p class="muted">Phù hợp học sinh mất gốc hoặc cần hệ thống hoá căn bản.</p>
-          <ul class="list">
-            <li><span class="dot"></span><span>2 buổi/tuần • 90 phút/buổi</span></li>
-            <li><span class="dot"></span><span>Giáo trình riêng • BTVN có chấm chữa</span></li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3 style="margin-top:0">Ôn luyện thi</h3>
-          <p class="muted">Tăng tốc theo ma trận đề, luyện đề thời gian thật.</p>
-          <ul class="list">
-            <li><span class="dot"></span><span>3 buổi/tuần • 120 phút/buổi</span></li>
-            <li><span class="dot"></span><span>Phân tích điểm yếu từng học sinh</span></li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3 style="margin-top:0">Đội tuyển/Chuyên</h3>
-          <p class="muted">Đào sâu tư duy, rèn lời giải ngắn – sáng – đúng.</p>
-          <ul class="list">
-            <li><span class="dot"></span><span>Seminar tương tác • Dự án nhỏ</span></li>
-            <li><span class="dot"></span><span>Kho tài liệu nâng cao</span></li>
-          </ul>
-        </div>
+    <section id="nhan-vat" class="section reveal">
+      <h2>Nhân vật</h2>
+      <div class="cards" id="cards">
+        <div class="card panel"><h3 style="margin:0 0 6px">Doraemon</h3><p class="muted">Mèo máy tốt bụng, luôn giúp Nobita bằng bảo bối.</p></div>
+        <div class="card panel"><h3 style="margin:0 0 6px">Nobita</h3><p class="muted">Hậu đậu nhưng chân thành, luôn cố gắng tốt hơn.</p></div>
+        <div class="card panel"><h3 style="margin:0 0 6px">Shizuka</h3><p class="muted">Bạn gái hiền dịu, chăm học và tử tế.</p></div>
+        <div class="card panel"><h3 style="margin:0 0 6px">Suneo</h3><p class="muted">Lắm chiêu, thích khoe khoang nhưng cũng có lúc dễ thương.</p></div>
+        <div class="card panel"><h3 style="margin:0 0 6px">Jaian</h3><p class="muted">Khoẻ mạnh, thích hát (to), đôi khi hơi… dữ.</p></div>
       </div>
     </section>
 
-    <section id="thanh-tich" class="section">
-      <h2>Thành tích tiêu biểu</h2>
-      <div class="grid">
-        <div class="card panel">
-          <p>Ghi nhận các kết quả/giải thưởng của học sinh theo từng năm học, kèm ảnh minh chứng (nếu có).</p>
-        </div>
-        <div class="card panel">
-          <p><b>Nhận xét phụ huynh</b>: “Thầy kèm rất sát, bài dễ hiểu, con tự tin hẳn lên sau 1 tháng.”</p>
-        </div>
-        <div class="card panel">
-          <p><b>Truyền thông</b>: Link bài viết/ảnh hoạt động đoàn – trường, poster lớp học.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="tai-lieu" class="section">
-      <h2>Tài liệu mẫu</h2>
+    <section id="bao-boi" class="section reveal">
+      <h2>Bảo bối nổi tiếng</h2>
       <div class="card panel">
-        <p>Đăng 1–3 tài liệu minh hoạ (PDF/Google Drive) như: Đề luyện tập, đáp án, kế hoạch học 4 tuần. Có thể đặt trong Google Drive, bật chế độ xem.</p>
-        <ul class="list">
-          <li><span class="dot"></span><span><a href="#">Đề luyện tập Đại số tuần 1 (PDF)</a></span></li>
-          <li><span class="dot"></span><span><a href="#">Hình học: Vector & Tọa độ (PDF)</a></span></li>
-          <li><span class="dot"></span><span><a href="#">Kế hoạch cá nhân hoá 4 tuần (DOCX)</a></span></li>
-        </ul>
+        <div class="gadgets">
+          <div class="gadget">Cánh cửa thần kỳ</div>
+          <div class="gadget">Chong chóng tre</div>
+          <div class="gadget">Đèn pin thu nhỏ</div>
+          <div class="gadget">Bánh rán 🍩</div>
+        </div>
+        <p class="muted">Các nhãn trôi nổi phía trên chỉ là minh hoạ vui mắt. Di chuột để thấy hiệu ứng parallax nhẹ.</p>
       </div>
     </section>
 
-    <section id="lien-he" class="section contact">
-      <div class="card panel">
-        <h2>Liên hệ</h2>
-        <p class="muted">Hẹn lịch tư vấn miễn phí 15 phút.</p>
-        <p><b>Điện thoại:</b> <a href="tel:+84xxxxxxxxx">+84 xxxxxxxx</a><br>
-           <b>Email:</b> <a href="mailto:email@domain.com">email@domain.com</a><br>
-           <b>Zalo:</b> <a href="https://zalo.me/xxxxxxxxx">zalo.me/xxxxxxxxx</a></p>
-        <p class="muted">* Thay số điện thoại/Zalo thật của Thầy vào chỗ dấu <code>x</code>.</p>
+    <section id="thu-vien" class="section reveal">
+      <h2>Thư viện ảnh (minh hoạ)</h2>
+      <div class="gall">
+        <div class="pic"><img src="assets/doraemon-1.jpg" alt="Ảnh Doraemon minh hoạ 1"><span class="hint">/assets/doraemon-1.jpg</span></div>
+        <div class="pic"><img src="assets/doraemon-2.jpg" alt="Ảnh Doraemon minh hoạ 2"><span class="hint">/assets/doraemon-2.jpg</span></div>
+        <div class="pic"><img src="assets/doraemon-3.jpg" alt="Ảnh Doraemon minh hoạ 3"><span class="hint">/assets/doraemon-3.jpg</span></div>
       </div>
-      <div class="card panel">
-        <h3 style="margin-top:0">Địa điểm lớp học</h3>
-        <p>Đại Trạch – Hoàn Lão, Bố Trạch, Quảng Bình (cập nhật chính xác theo địa chỉ lớp).</p>
-        <iframe title="Bản đồ lớp" style="width:100%;height:260px;border:0;border-radius:12px" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d0!2d0!3d0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z!5e0"></iframe>
-      </div>
+      <p class="muted" style="margin-top:10px">👉 Thay các đường dẫn ảnh trong thư mục <code>assets</code> của repo để hiển thị ảnh thực tế (tự chụp, được phép dùng, hoặc hình do thầy sở hữu).</p>
     </section>
   </main>
 
   <footer>
-    <div class="container">© 2025 Đức Trung • Lớp Toán Chuyên Sâu • All rights reserved.</div>
+    <div class="container">Trang fan do bạn tạo để học web • Không thương mại hoá nội dung.</div>
   </footer>
+
+  <script>
+    // ===== BONG BÓNG/SAO NỀN VỚI CANVAS =====
+    const cv = document.getElementById('bg');
+    const ctx = cv.getContext('2d');
+    let w,h,particles=[]; const COUNT=140;
+    function resize(){ w=cv.width=innerWidth; h=cv.height=innerHeight; }
+    addEventListener('resize',resize); resize();
+    function spawn(){
+      particles = Array.from({length:COUNT},()=>({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        r: Math.random()*2.2+0.6,
+        vx:(Math.random()-.5)*0.3,
+        vy:Math.random()*0.3+0.1,
+        a: Math.random()*0.6+0.2
+      }));
+    }
+    function tick(){
+      ctx.clearRect(0,0,w,h);
+      for(const p of particles){
+        p.x+=p.vx; p.y+=p.vy; if(p.x<0)p.x=w; if(p.x>w)p.x=0; if(p.y>h)p.y=0;
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle=`rgba(121,210,255,${p.a})`; ctx.fill();
+      }
+      requestAnimationFrame(tick);
+    }
+    spawn(); tick();
+
+    // ===== TYPEWRITER =====
+    const words=[
+      'Doraemon – mèo máy từ tương lai',
+      'Bạn thân của Nobita',
+      'Bảo bối kỳ diệu & những chuyến phiêu lưu'
+    ];
+    const el=document.getElementById('type');
+    let wi=0,ci=0,dir=1,hold=0;
+    function type(){
+      const w=words[wi];
+      if(dir===1){ ci++; if(ci> w.length){ dir=-1; hold=18; }}
+      else if(dir===-1){ if(hold-->0){} else { ci--; if(ci===0){ dir=1; wi=(wi+1)%words.length; }}}
+      el.textContent=w.slice(0,ci);
+      setTimeout(type, ci===0? 220: 60);
+    }
+    type();
+
+    // ===== TILT HOVER CHO CARDS =====
+    const cards = document.querySelectorAll('#cards .card');
+    cards.forEach(card=>{
+      const r=10; // độ nghiêng
+      card.addEventListener('mousemove',e=>{
+        const b=card.getBoundingClientRect();
+        const px=(e.clientX-b.left)/b.width, py=(e.clientY-b.top)/b.height;
+        const rx=(.5-py)*r, ry=(px-.5)*r;
+        card.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg) translateY(-2px)`;
+      });
+      card.addEventListener('mouseleave',()=>{card.style.transform='';});
+    });
+
+    // ===== PARALLAX NHẸ CHO SVG =====
+    const svg=document.getElementById('d-svg');
+    document.addEventListener('mousemove',e=>{
+      const cx=innerWidth/2, cy=innerHeight/2; const dx=(e.clientX-cx)/cx, dy=(e.clientY-cy)/cy;
+      svg.style.transform=`translate(${dx*8}px,${dy*6}px)`;
+    });
+
+    // ===== SCROLL REVEAL =====
+    const obs=new IntersectionObserver((ents)=>{
+      ents.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('on'); obs.unobserve(en.target); } });
+    },{ threshold:.1});
+    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  </script>
 </body>
 </html>
