@@ -16,24 +16,13 @@
   <script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <style>
     :root{
-      --bg1:#071021;       /* nền đậm */
-      --bg2:#0e1d3a;       /* chuyển sắc */
-      --panel:#0b152e;     /* thẻ */
-      --text:#e6f0ff;      /* chữ */
-      --muted:#9ab4ff;     /* phụ */
-      --brand:#22d3ee;     /* cyan */
-      --accent:#a78bfa;    /* violet */
-      --success:#22c55e;   /* xanh lá */
-      --danger:#ef4444;    /* đỏ */
-      --radius:18px;
-      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --bg1:#071021; --bg2:#0e1d3a; --panel:#0b152e; --text:#e6f0ff; --muted:#9ab4ff;
+      --brand:#22d3ee; --accent:#a78bfa; --success:#22c55e; --danger:#ef4444;
+      --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.35);
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;height:100%;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Noto Sans",sans-serif;line-height:1.7;overflow-x:hidden}
-    a{color:var(--brand);text-decoration:none}
-    a:hover{text-decoration:underline}
-
-    /* layout */
+    a{color:var(--brand);text-decoration:none} a:hover{text-decoration:underline}
     .container{max-width:1150px;margin:auto;padding:24px}
     header{position:sticky;top:0;background:rgba(8,18,40,.55);backdrop-filter: blur(14px);border-bottom:1px solid rgba(154,180,255,.2);z-index:60}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
@@ -43,12 +32,8 @@
     .nav a{color:var(--text);opacity:.94;padding:10px 12px;border-radius:12px}
     .nav a:hover{background:rgba(154,180,255,.12);text-decoration:none}
     .btn{display:inline-block;padding:12px 18px;border-radius:14px;background:linear-gradient(135deg,var(--brand),#60efff);color:#02253f;font-weight:800;box-shadow:var(--shadow)}
-    .btn:hover{filter:brightness(1.08)}
-    .btn.outline{background:transparent;border:1px solid rgba(154,180,255,.35);color:var(--text)}
-
-    /* background canvas */
+    .btn:hover{filter:brightness(1.08)} .btn.outline{background:transparent;border:1px solid rgba(154,180,255,.35);color:var(--text)}
     #matrix{position:fixed;inset:0;z-index:-1;opacity:.45}
-
     .hero{display:grid;grid-template-columns: 1.1fr .9fr;gap:28px;align-items:center;padding:48px 0}
     .card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.00));border:1px solid rgba(154,180,255,.23);border-radius:var(--radius);box-shadow:var(--shadow)}
     .hero .left{padding:28px}
@@ -57,37 +42,31 @@
     .type{font-weight:800;color:#b8d1ff}
     .tagline{font-size:clamp(16px,2.1vw,20px);color:#cfe0ff}
     .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:18px}
-
     .stage{position:relative;aspect-ratio:4/3;width:100%;border-radius:var(--radius);overflow:hidden;border:1px solid rgba(154,180,255,.23)}
     .stage .grid{position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px, rgba(34,211,238,.5) 1px, transparent 1px);background-size:30px 30px;opacity:.35}
     .stage svg{position:relative;z-index:2;width:100%;height:100%;display:block}
-
-    .section{padding:36px 0}
-    h2{font-size:clamp(22px,3vw,30px);margin:0 0 14px}
+    .section{padding:36px 0} h2{font-size:clamp(22px,3vw,30px);margin:0 0 14px}
     .grid{display:grid;grid-template-columns: repeat(3,1fr); gap:18px}
     .panel{padding:18px}
-
     .list{display:grid;gap:10px;margin:0;padding:0}
     .list li{list-style:none;display:flex;gap:10px;align-items:flex-start}
     .dot{width:10px;height:10px;margin-top:9px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--accent));box-shadow:0 0 0 3px rgba(34,211,238,.18)}
-
     .cards{display:grid;grid-template-columns: repeat(3,1fr);gap:16px}
     .cards .card{padding:16px;transition:transform .25s ease}
-
     .demo{display:grid;grid-template-columns: 1.1fr .9fr;gap:18px}
     .demo .panel{padding:0;overflow:hidden}
     canvas.demo-cv{width:100%;height:380px;display:block;background:linear-gradient(180deg,#0a1732,#08142a);border-radius: 0 0 var(--radius) var(--radius)}
     .controls{display:flex;gap:10px;flex-wrap:wrap;padding:12px 14px;border-bottom:1px solid rgba(154,180,255,.2);background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.00))}
-    .controls label{font-size:.9rem;color:#cfe0ff}
-    .controls input[type=range]{accent-color:var(--brand)}
-
+    .controls label{font-size:.9rem;color:#cfe0ff} .controls input[type=range]{accent-color:var(--brand)}
     .contact{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
     .kpi{font-size:34px;font-weight:900}
-
     footer{padding:28px 0;border-top:1px solid rgba(154,180,255,.23);color:#cfe0ff}
-
     .reveal{opacity:0;transform:translateY(14px);transition:all .6s ease}
     .reveal.on{opacity:1;transform:none}
+
+    /* YouTube grid */
+    .video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+    .video-grid iframe{width:100%;aspect-ratio:16/9;border-radius:var(--radius);border:1px solid rgba(154,180,255,.23);box-shadow:var(--shadow)}
 
     /* responsive */
     @media (max-width: 980px){
@@ -119,6 +98,7 @@
       <nav>
         <a href="#gioi-thieu">Giới thiệu</a>
         <a href="#demo">Demo</a>
+        <a href="#youtube">YouTube</a>
         <a href="#lien-he">Liên hệ</a>
         <a class="btn" href="https://zalo.me/0366374635" target="_blank" rel="noopener">Chat Zalo</a>
       </nav>
@@ -208,7 +188,7 @@
         <canvas id="plot" class="demo-cv" aria-label="Canvas vẽ hàm số"></canvas>
       </div>
 
-      <!-- DEMO 2: Phân tích số nguyên tố -->
+      <!-- DEMO 2: Phân tích số nguyên tố + Ma trận xoay -->
       <div class="demo">
         <div class="card panel">
           <div class="controls"><strong>Phân tích số nguyên tố</strong></div>
@@ -223,6 +203,22 @@
           <div class="controls"><strong>Trực quan ma trận xoay</strong></div>
           <canvas id="rot" class="demo-cv" aria-label="Canvas mô phỏng ma trận xoay 2D"></canvas>
         </div>
+      </div>
+    </section>
+
+    <!-- === YOUTUBE SECTION === -->
+    <section id="youtube" class="section reveal">
+      <h2>Video YouTube</h2>
+      <p>Xem trực tiếp video/playlist tích hợp ngay trên trang:</p>
+      <div class="video-grid">
+        <!-- Video từ link thầy cung cấp -->
+        <iframe
+          src="https://www.youtube.com/embed/n2zTd0vPdJg?list=RDn2zTd0vPdJg&start_radio=1"
+          title="YouTube video player"
+          frameborder="0"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
       </div>
     </section>
 
@@ -273,11 +269,7 @@
     addEventListener('resize', mResize); mResize(); mTick();
 
     // ===== 2) Typewriter headline =====
-    const headWords = [
-      'IT × Toán học',
-      'Web hiệu năng cao',
-      'Trực quan hoá kiến thức'
-    ];
+    const headWords = ['IT × Toán học','Web hiệu năng cao','Trực quan hoá kiến thức'];
     const headEl = document.getElementById('type');
     let wi=0,ci=0,dir=1,hold=0; function type(){
       const w=headWords[wi];
@@ -313,13 +305,12 @@
       pctx.fillStyle='#08142a'; pctx.fillRect(0,0,pw,ph);
       pctx.strokeStyle='rgba(154,180,255,.25)'; pctx.lineWidth=1; pctx.beginPath();
       for(let x=ox%scale;x<pw;x+=scale){ pctx.moveTo(x,0); pctx.lineTo(x,ph);} for(let y=oy%scale;y<ph;y+=scale){ pctx.moveTo(0,y); pctx.lineTo(pw,y);} pctx.stroke();
-      // trục
       pctx.strokeStyle='rgba(34,211,238,.8)'; pctx.lineWidth=2; pctx.beginPath(); pctx.moveTo(0,oy); pctx.lineTo(pw,oy); pctx.moveTo(ox,0); pctx.lineTo(ox,ph); pctx.stroke();
     }
     function plot(){
       grid(); pctx.save(); pctx.translate(ox,oy); pctx.scale(1,-1);
       pctx.strokeStyle='#a78bfa'; pctx.lineWidth=2; pctx.beginPath();
-      const f=fnPicker.value; const a=parseFloat(A.value), b=parseFloat(B.value); const step=2/scale; // bước theo px
+      const f=fnPicker.value; const a=parseFloat(A.value), b=parseFloat(B.value); const step=2/scale;
       let first=true; for(let x=-ox/scale; x< (pw-ox)/scale; x+=step){
         let y=0; if(f==='sin') y=a*Math.sin(b*x + t); else if(f==='cos') y=a*Math.cos(b*x + t);
         else if(f==='quad'){ const aa=.6, bb=-.2, cc=-.2; y=(aa*Math.pow(x,2)+bb*x+cc); }
@@ -344,14 +335,10 @@
     const rcv=$('#rot'), rctx=rcv.getContext('2d'); let rw,rh,theta=0;
     function rResize(){ const dpr=Math.min(2, devicePixelRatio||1); rw=rcv.clientWidth; rh=rcv.clientHeight; rcv.width=rw*dpr; rcv.height=rh*dpr; rctx.setTransform(dpr,0,0,dpr,0,0);} rResize(); addEventListener('resize', rResize);
     function rTick(){ rctx.fillStyle='#08142a'; rctx.fillRect(0,0,rw,rh); const cx=rw/2, cy=rh/2; const R=120;
-      // trục
       rctx.strokeStyle='rgba(154,180,255,.25)'; rctx.beginPath(); rctx.moveTo(0,cy); rctx.lineTo(rw,cy); rctx.moveTo(cx,0); rctx.lineTo(cx,rh); rctx.stroke();
-      // vector gốc (1,0)
       rctx.strokeStyle='#22d3ee'; rctx.lineWidth=3; rctx.beginPath(); rctx.moveTo(cx,cy); rctx.lineTo(cx+R,cy); rctx.stroke();
-      // vector sau xoay
       const x= Math.cos(theta), y=Math.sin(theta);
       rctx.strokeStyle='#a78bfa'; rctx.beginPath(); rctx.moveTo(cx,cy); rctx.lineTo(cx+R*x, cy-R*y); rctx.stroke();
-      // ma trận R(θ)
       const boxW=210, boxH=64; rctx.fillStyle='rgba(12,26,48,.7)'; rctx.strokeStyle='rgba(154,180,255,.25)'; rctx.lineWidth=1; rctx.beginPath(); rctx.roundRect(cx-boxW/2, 16, boxW, boxH, 12); rctx.fill(); rctx.stroke();
       rctx.fillStyle='#cfe0ff'; rctx.font='14px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
       rctx.fillText(`R(θ) = [ cos θ   -sin θ ]`, cx-boxW/2+16, 40);
@@ -373,10 +360,7 @@
     "@type": "Person",
     "name": "Phan Thanh Hiếu",
     "jobTitle": "IT & Mathematics",
-    "alumniOf": {
-      "@type": "CollegeOrUniversity",
-      "name": "Đại học Sư phạm – Đại học Huế"
-    },
+    "alumniOf": {"@type": "CollegeOrUniversity","name": "Đại học Sư phạm – Đại học Huế"},
     "url": "https://example.com/",
     "telephone": "+84 366 374 635",
     "sameAs": ["https://zalo.me/0366374635"]
