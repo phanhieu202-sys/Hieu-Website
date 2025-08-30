@@ -3,114 +3,124 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Doraemon Fan Page | Thế giới mèo máy & bảo bối</title>
-  <meta name="description" content="Trang fan giới thiệu Doraemon, bạn bè và các bảo bối nổi tiếng. Hiệu ứng mượt, ảnh minh họa, hoạt cảnh JavaScript vui mắt." />
-  <meta property="og:title" content="Doraemon Fan Page" />
-  <meta property="og:description" content="Cùng khám phá Doraemon, Nobita, Shizuka, Suneo, Jaian và những bảo bối huyền thoại!" />
+  <title>Phan Thanh Hiếu | IT & Toán học</title>
+  <meta name="description" content="Trang giới thiệu Phan Thanh Hiếu – IT & Toán học. Tốt nghiệp Đại học Sư phạm – Đại học Huế. Demo tương tác: vẽ hàm số, phân tích số nguyên tố, trực quan ma trận xoay." />
+  <meta name="theme-color" content="#0b1220" />
+  <meta property="og:title" content="Phan Thanh Hiếu | IT & Toán học" />
+  <meta property="og:description" content="Trang giới thiệu cá nhân với hiệu ứng động, demo toán–CNTT, và thông tin liên hệ Zalo." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="/assets/og-doraemon.jpg" />
+  <meta property="og:image" content="/assets/og-hieu.jpg" />
   <meta property="og:locale" content="vi_VN" />
   <meta name="twitter:card" content="summary_large_image" />
+  <!-- MathJax để hiển thị công thức đẹp (tải khi online) -->
+  <script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <style>
     :root{
-      --bg1:#0a2540;        /* nền đậm */
-      --bg2:#0f2e57;        /* chuyển sắc */
-      --card:#0b1f39;       /* panel */
-      --text:#e8f3ff;       /* chữ */
-      --muted:#9cc2ff;      /* phụ */
-      --blue:#2aa7ff;       /* xanh Doraemon */
-      --white:#ffffff;
-      --red:#ff3b3b;
-      --yellow:#ffd749;
-      --radius:20px;
+      --bg1:#071021;       /* nền đậm */
+      --bg2:#0e1d3a;       /* chuyển sắc */
+      --panel:#0b152e;     /* thẻ */
+      --text:#e6f0ff;      /* chữ */
+      --muted:#9ab4ff;     /* phụ */
+      --brand:#22d3ee;     /* cyan */
+      --accent:#a78bfa;    /* violet */
+      --success:#22c55e;   /* xanh lá */
+      --danger:#ef4444;    /* đỏ */
+      --radius:18px;
       --shadow:0 10px 30px rgba(0,0,0,.35);
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;height:100%;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:var(--text);font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Noto Sans",sans-serif;line-height:1.7;overflow-x:hidden}
-    a{color:#8bddff;text-decoration:none}
+    html,body{margin:0;padding:0;height:100%;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Noto Sans",sans-serif;line-height:1.7;overflow-x:hidden}
+    a{color:var(--brand);text-decoration:none}
     a:hover{text-decoration:underline}
-    .container{max-width:1100px;margin:auto;padding:24px}
-    header{position:sticky;top:0;background:rgba(12,26,48,.5);backdrop-filter: blur(12px);border-bottom:1px solid rgba(156,194,255,.2);z-index:50}
+
+    /* layout */
+    .container{max-width:1150px;margin:auto;padding:24px}
+    header{position:sticky;top:0;background:rgba(8,18,40,.55);backdrop-filter: blur(14px);border-bottom:1px solid rgba(154,180,255,.2);z-index:60}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
-    .brand .dot{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--blue),#79d2ff);box-shadow:0 0 0 3px rgba(42,167,255,.25)}
-    .nav a{color:var(--text);opacity:.9;padding:10px 12px;border-radius:12px}
-    .nav a:hover{background:rgba(156,194,255,.12);text-decoration:none}
-    .btn{display:inline-block;padding:12px 18px;border-radius:14px;background:linear-gradient(135deg,#79d2ff,var(--blue));color:#00223d;font-weight:800;box-shadow:var(--shadow)}
-    .btn:hover{filter:brightness(1.07)}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.3px}
+    .logo{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%,var(--brand),#60efff);box-shadow:var(--shadow);font-weight:900;color:#041225}
+    .logo svg{width:22px;height:22px}
+    .nav a{color:var(--text);opacity:.94;padding:10px 12px;border-radius:12px}
+    .nav a:hover{background:rgba(154,180,255,.12);text-decoration:none}
+    .btn{display:inline-block;padding:12px 18px;border-radius:14px;background:linear-gradient(135deg,var(--brand),#60efff);color:#02253f;font-weight:800;box-shadow:var(--shadow)}
+    .btn:hover{filter:brightness(1.08)}
+    .btn.outline{background:transparent;border:1px solid rgba(154,180,255,.35);color:var(--text)}
 
-    #bg{position:fixed;inset:0;z-index:-1}
+    /* background canvas */
+    #matrix{position:fixed;inset:0;z-index:-1;opacity:.45}
 
-    .hero{display:grid;grid-template-columns: 1.1fr .9fr;gap:28px;align-items:center;padding:46px 0}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.00));border:1px solid rgba(156,194,255,.25);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero{display:grid;grid-template-columns: 1.1fr .9fr;gap:28px;align-items:center;padding:48px 0}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.00));border:1px solid rgba(154,180,255,.23);border-radius:var(--radius);box-shadow:var(--shadow)}
     .hero .left{padding:28px}
     .eyebrow{color:var(--muted);text-transform:uppercase;letter-spacing:.18em;font-size:.85rem}
     h1{font-size:clamp(28px,4.2vw,46px);line-height:1.15;margin:.2em 0 .3em}
-    .type{font-weight:700;color:#9dd7ff}
-    .tagline{font-size:clamp(16px,2.1vw,20px);color:#cfe6ff}
+    .type{font-weight:800;color:#b8d1ff}
+    .tagline{font-size:clamp(16px,2.1vw,20px);color:#cfe0ff}
     .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:18px}
 
-    .stage{position:relative;aspect-ratio:4/3;width:100%;border-radius:var(--radius);overflow:hidden;border:1px solid rgba(156,194,255,.25)}
-    .stage .glow{position:absolute;inset:-40%;background:radial-gradient(circle at 60% 30%, rgba(42,167,255,.35), transparent 50%),radial-gradient(circle at 30% 70%, rgba(255,215,73,.25), transparent 45%)}
+    .stage{position:relative;aspect-ratio:4/3;width:100%;border-radius:var(--radius);overflow:hidden;border:1px solid rgba(154,180,255,.23)}
+    .stage .grid{position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px, rgba(34,211,238,.5) 1px, transparent 1px);background-size:30px 30px;opacity:.35}
     .stage svg{position:relative;z-index:2;width:100%;height:100%;display:block}
 
     .section{padding:36px 0}
     h2{font-size:clamp(22px,3vw,30px);margin:0 0 14px}
     .grid{display:grid;grid-template-columns: repeat(3,1fr); gap:18px}
-
     .panel{padding:18px}
-    .card.panel:hover{transform:translateY(-2px)}
 
     .list{display:grid;gap:10px;margin:0;padding:0}
     .list li{list-style:none;display:flex;gap:10px;align-items:flex-start}
-    .list .dot{width:10px;height:10px;margin-top:9px;border-radius:50%;background:linear-gradient(135deg,var(--yellow),var(--red));box-shadow:0 0 0 3px rgba(255,215,73,.18)}
+    .dot{width:10px;height:10px;margin-top:9px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--accent));box-shadow:0 0 0 3px rgba(34,211,238,.18)}
 
-    .cards{display:grid;grid-template-columns: repeat(5,1fr);gap:16px}
+    .cards{display:grid;grid-template-columns: repeat(3,1fr);gap:16px}
     .cards .card{padding:16px;transition:transform .25s ease}
 
-    .gall{display:grid;grid-template-columns: repeat(3,1fr); gap:14px}
-    .gall .pic{aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#153458,#0d2541);border:1px solid rgba(156,194,255,.25);position:relative}
-    .gall .pic img{width:100%;height:100%;object-fit:cover;display:block;opacity:.95;transition:transform .6s ease}
-    .gall .pic:hover img{transform:scale(1.06)}
-    .gall .hint{position:absolute;bottom:8px;right:10px;font-size:12px;color:#cfe6ff;background:rgba(10,37,64,.55);padding:4px 8px;border-radius:10px;border:1px solid rgba(156,194,255,.25)}
-
-    .gadgets{position:relative;min-height:120px}
-    .gadget{position:absolute;padding:10px 14px;border-radius:999px;background:linear-gradient(135deg,#79d2ff,var(--blue));color:#00223d;font-weight:800;border:1px solid rgba(156,194,255,.3);box-shadow:var(--shadow);animation:float 6s ease-in-out infinite}
-    .gadget:nth-child(2){left:12%;top:40%;animation-delay:.8s}
-    .gadget:nth-child(3){left:70%;top:20%;animation-delay:1.6s}
-    .gadget:nth-child(4){left:55%;top:68%;animation-delay:2.2s}
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+    .demo{display:grid;grid-template-columns: 1.1fr .9fr;gap:18px}
+    .demo .panel{padding:0;overflow:hidden}
+    canvas.demo-cv{width:100%;height:380px;display:block;background:linear-gradient(180deg,#0a1732,#08142a);border-radius: 0 0 var(--radius) var(--radius)}
+    .controls{display:flex;gap:10px;flex-wrap:wrap;padding:12px 14px;border-bottom:1px solid rgba(154,180,255,.2);background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.00))}
+    .controls label{font-size:.9rem;color:#cfe0ff}
+    .controls input[type=range]{accent-color:var(--brand)}
 
     .contact{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+    .kpi{font-size:34px;font-weight:900}
 
-    footer{padding:28px 0;border-top:1px solid rgba(156,194,255,.25);color:#cfe6ff}
+    footer{padding:28px 0;border-top:1px solid rgba(154,180,255,.23);color:#cfe0ff}
 
     .reveal{opacity:0;transform:translateY(14px);transition:all .6s ease}
     .reveal.on{opacity:1;transform:none}
 
-    @media (max-width: 960px){
+    /* responsive */
+    @media (max-width: 980px){
       .hero{grid-template-columns: 1fr}
       .grid{grid-template-columns: 1fr 1fr}
-      .cards{grid-template-columns: 1fr 1fr 1fr}
+      .cards{grid-template-columns: 1fr 1fr}
+      .demo{grid-template-columns:1fr}
       .contact{grid-template-columns:1fr}
     }
     @media (max-width: 560px){
-      .grid{grid-template-columns:1fr}
-      .cards{grid-template-columns: 1fr 1fr}
-      .gall{grid-template-columns: 1fr 1fr}
+      .grid,.cards{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
-  <canvas id="bg"></canvas>
+  <!-- nền ma trận số/ký hiệu toán học -->
+  <canvas id="matrix"></canvas>
+
   <header>
     <div class="container nav">
-      <div class="brand"><span class="dot"></span><span>Doraemon Fan</span></div>
+      <div class="brand">
+        <div class="logo" title="IT × Math">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 5h12M6 12h12M6 19h12" stroke="#031327" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span>Phan Thanh Hiếu</span>
+      </div>
       <nav>
         <a href="#gioi-thieu">Giới thiệu</a>
-        <a href="#nhan-vat">Nhân vật</a>
-        <a href="#bao-boi">Bảo bối</a>
-        <a href="#thu-vien">Thư viện ảnh</a>
+        <a href="#demo">Demo</a>
+        <a href="#lien-he">Liên hệ</a>
+        <a class="btn" href="https://zalo.me/0366374635" target="_blank" rel="noopener">Chat Zalo</a>
       </nav>
     </div>
   </header>
@@ -118,182 +128,259 @@
   <main class="container">
     <section class="hero">
       <div class="left card">
-        <div class="eyebrow">Mèo máy đến từ thế kỷ 22</div>
+        <div class="eyebrow">IT × Mathematics</div>
         <h1><span class="type" id="type"></span></h1>
-        <p class="tagline">Cùng khám phá Doraemon, Nobita, Shizuka, Suneo, Jaian và những bảo bối huyền thoại như <b>Cánh cửa thần kỳ</b>, <b>Chong chóng tre</b>, <b>Đèn pin thu nhỏ</b>…</p>
+        <p class="tagline">Tốt nghiệp <b>Đại học Sư phạm – Đại học Huế</b>. Đam mê kết hợp <i>kỹ thuật phần mềm</i> với <i>tư duy Toán học</i> để tạo nên sản phẩm gọn nhẹ, nhanh và đẹp.</p>
         <div class="cta">
-          <a class="btn" href="#thu-vien">Xem thư viện ảnh</a>
-          <a class="btn" style="background:linear-gradient(135deg,var(--yellow),#ffc93c)" href="#bao-boi">Bảo bối hot</a>
+          <a class="btn" href="tel:+84366374635">Gọi 0366 374 635</a>
+          <a class="btn outline" href="#demo">Xem demo tương tác ↓</a>
         </div>
       </div>
       <div class="right">
         <div class="stage card">
-          <div class="glow"></div>
-          <!-- SVG minh hoạ Doraemon phong cách vector đơn giản (không dùng ảnh có bản quyền) -->
-          <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" aria-label="Minh hoạ Doraemon" id="d-svg">
-            <!-- đầu xanh -->
-            <circle cx="400" cy="260" r="160" fill="#2aa7ff" />
-            <!-- mặt trắng -->
-            <ellipse cx="400" cy="290" rx="140" ry="120" fill="#ffffff" />
-            <!-- mắt -->
-            <circle cx="360" cy="235" r="32" fill="#ffffff" />
-            <circle cx="440" cy="235" r="32" fill="#ffffff" />
-            <circle cx="368" cy="242" r="10" fill="#1b2b44" />
-            <circle cx="432" cy="242" r="10" fill="#1b2b44" />
-            <!-- mũi đỏ -->
-            <circle cx="400" cy="270" r="16" fill="#ff3b3b" />
-            <!-- miệng -->
-            <path d="M330 300 C400 360, 400 360, 470 300" stroke="#e43d3d" stroke-width="4" fill="none"/>
-            <!-- râu -->
-            <g stroke="#1b2b44" stroke-width="3">
-              <line x1="320" y1="270" x2="270" y2="260" />
-              <line x1="320" y1="285" x2="265" y2="285" />
-              <line x1="320" y1="300" x2="270" y2="310" />
-              <line x1="480" y1="270" x2="530" y2="260" />
-              <line x1="480" y1="285" x2="535" y2="285" />
-              <line x1="480" y1="300" x2="530" y2="310" />
-            </g>
-            <!-- cổ chuông -->
-            <rect x="300" y="330" width="200" height="28" rx="14" fill="#ff3b3b" />
-            <circle cx="400" cy="360" r="22" fill="#ffd749" stroke="#caa400" stroke-width="3"/>
-            <circle cx="400" cy="366" r="6" fill="#1b2b44" />
-            <line x1="400" y1="372" x2="400" y2="386" stroke="#caa400" stroke-width="3"/>
-            <!-- thân -->
-            <rect x="330" y="360" width="140" height="120" rx="24" fill="#2aa7ff" />
-            <circle cx="400" cy="420" r="48" fill="#ffffff" />
+          <div class="grid"></div>
+          <!-- SVG biểu tượng π & { } để gợi cảm giác IT–Math -->
+          <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" aria-label="Biểu tượng IT & Toán">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#22d3ee"/>
+                <stop offset="100%" stop-color="#a78bfa"/>
+              </linearGradient>
+            </defs>
+            <rect x="100" y="120" width="120" height="360" rx="18" fill="url(#g1)" opacity=".7"/>
+            <rect x="580" y="120" width="120" height="360" rx="18" fill="url(#g1)" opacity=".7"/>
+            <path d="M280 180h260" stroke="url(#g1)" stroke-width="24" stroke-linecap="round"/>
+            <path d="M430 180v260" stroke="url(#g1)" stroke-width="24" stroke-linecap="round"/>
+            <text x="330" y="450" fill="#bfe9ff" font-size="140" font-family="Georgia,serif">π</text>
           </svg>
         </div>
       </div>
     </section>
 
     <section id="gioi-thieu" class="section reveal">
-      <h2>Giới thiệu</h2>
+      <h2>Giới thiệu & Kỹ năng</h2>
       <div class="grid">
         <div class="card panel">
-          <p><b>Doraemon</b> là chú mèo máy màu xanh đến từ tương lai, quay về quá khứ để hỗ trợ Nobita vượt qua rắc rối bằng những món <i>bảo bối</i> vừa sáng tạo vừa hài hước.</p>
-        </div>
-        <div class="card panel">
-          <p>Thông điệp chính: tình bạn, lòng tốt, sự nỗ lực và trí tưởng tượng. Mỗi bảo bối là một cách nhìn vui nhộn về khoa học & ước mơ.</p>
-        </div>
-        <div class="card panel">
+          <p><b>Phan Thanh Hiếu</b> – IT & Toán học. Hướng tới trải nghiệm mượt, tốc độ cao, code sạch. Quan tâm: thuật toán, trực quan hoá dữ liệu, tối ưu hiệu năng Web.</p>
           <ul class="list">
-            <li><span class="dot"></span><span>Nhân vật: Nobita, Shizuka, Suneo, Jaian…</span></li>
-            <li><span class="dot"></span><span>Bảo bối tiêu biểu: Cánh cửa thần kỳ, Chong chóng tre, Túi thần kỳ…</span></li>
-            <li><span class="dot"></span><span>Phong cách: ấm áp – hài hước – giàu trí tưởng tượng.</span></li>
+            <li><span class="dot"></span><span>Front-end: HTML • CSS • JavaScript (Canvas, SVG, Web Animations)</span></li>
+            <li><span class="dot"></span><span>Toán: Giải tích cơ bản, Đại số tuyến tính, Rời rạc, Xác suất</span></li>
+            <li><span class="dot"></span><span>Công cụ: Git/GitHub • LaTeX • GeoGebra • VS Code</span></li>
+          </ul>
+        </div>
+        <div class="card panel">
+          <div class="kpi">⚡ Hiệu năng</div>
+          <div class="muted">Ưu tiên web tĩnh + Canvas/JS thuần → tải nhanh, dễ triển khai trên GitHub Pages/Vercel.</div>
+          <div style="height:10px"></div>
+          <div class="kpi">🧮 IT × Math</div>
+          <div class="muted">Kết hợp mô phỏng & trực quan hoá để học – dạy – demo khái niệm Toán.</div>
+        </div>
+        <div class="card panel">
+          <h3 style="margin-top:0">Tech highlight</h3>
+          <ul class="list">
+            <li><span class="dot"></span><span>Canvas hiệu ứng "matrix" ký hiệu toán học</span></li>
+            <li><span class="dot"></span><span>Typewriter/tilt/parallax/scroll-reveal</span></li>
+            <li><span class="dot"></span><span>MathJax hiển thị công thức đẹp</span></li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section id="nhan-vat" class="section reveal">
-      <h2>Nhân vật</h2>
-      <div class="cards" id="cards">
-        <div class="card panel"><h3 style="margin:0 0 6px">Doraemon</h3><p class="muted">Mèo máy tốt bụng, luôn giúp Nobita bằng bảo bối.</p></div>
-        <div class="card panel"><h3 style="margin:0 0 6px">Nobita</h3><p class="muted">Hậu đậu nhưng chân thành, luôn cố gắng tốt hơn.</p></div>
-        <div class="card panel"><h3 style="margin:0 0 6px">Shizuka</h3><p class="muted">Bạn gái hiền dịu, chăm học và tử tế.</p></div>
-        <div class="card panel"><h3 style="margin:0 0 6px">Suneo</h3><p class="muted">Lắm chiêu, thích khoe khoang nhưng cũng có lúc dễ thương.</p></div>
-        <div class="card panel"><h3 style="margin:0 0 6px">Jaian</h3><p class="muted">Khoẻ mạnh, thích hát (to), đôi khi hơi… dữ.</p></div>
-      </div>
-    </section>
+    <section id="demo" class="section reveal">
+      <h2>Demo tương tác IT × Toán</h2>
 
-    <section id="bao-boi" class="section reveal">
-      <h2>Bảo bối nổi tiếng</h2>
-      <div class="card panel">
-        <div class="gadgets">
-          <div class="gadget">Cánh cửa thần kỳ</div>
-          <div class="gadget">Chong chóng tre</div>
-          <div class="gadget">Đèn pin thu nhỏ</div>
-          <div class="gadget">Bánh rán 🍩</div>
+      <!-- DEMO 1: Vẽ hàm số -->
+      <div class="card" style="margin-bottom:18px">
+        <div class="controls">
+          <strong>Trình vẽ hàm số</strong>
+          <label>Hàm:
+            <select id="fnPicker">
+              <option value="sin">y = A · sin(Bx + t)</option>
+              <option value="cos">y = A · cos(Bx + t)</option>
+              <option value="quad">y = ax² + bx + c</option>
+              <option value="logistic">y = 1/(1+e^{-x})</option>
+            </select>
+          </label>
+          <label>A: <input type="range" id="A" min="0" max="3" step="0.1" value="1.2"></label>
+          <label>B: <input type="range" id="B" min="0.1" max="3" step="0.1" value="1"></label>
+          <label>tốc độ: <input type="range" id="SPD" min="0" max="2" step="0.05" value="0.6"></label>
         </div>
-        <p class="muted">Các nhãn trôi nổi phía trên chỉ là minh hoạ vui mắt. Di chuột để thấy hiệu ứng parallax nhẹ.</p>
+        <canvas id="plot" class="demo-cv" aria-label="Canvas vẽ hàm số"></canvas>
+      </div>
+
+      <!-- DEMO 2: Phân tích số nguyên tố -->
+      <div class="demo">
+        <div class="card panel">
+          <div class="controls"><strong>Phân tích số nguyên tố</strong></div>
+          <div style="padding:14px">
+            <label for="num">Nhập số n (2…10⁷): </label>
+            <input id="num" type="number" min="2" max="10000000" value="2025" style="padding:8px 10px;border-radius:10px;border:1px solid rgba(154,180,255,.35);background:#0a1732;color:#e6f0ff"> 
+            <button class="btn" id="factBtn">Phân tích</button>
+            <div id="factOut" style="margin-top:12px"></div>
+          </div>
+        </div>
+        <div class="card panel">
+          <div class="controls"><strong>Trực quan ma trận xoay</strong></div>
+          <canvas id="rot" class="demo-cv" aria-label="Canvas mô phỏng ma trận xoay 2D"></canvas>
+        </div>
       </div>
     </section>
 
-    <section id="thu-vien" class="section reveal">
-      <h2>Thư viện ảnh (minh hoạ)</h2>
-      <div class="gall">
-        <div class="pic"><img src="assets/doraemon-1.jpg" alt="Ảnh Doraemon minh hoạ 1"><span class="hint">/assets/doraemon-1.jpg</span></div>
-        <div class="pic"><img src="assets/doraemon-2.jpg" alt="Ảnh Doraemon minh hoạ 2"><span class="hint">/assets/doraemon-2.jpg</span></div>
-        <div class="pic"><img src="assets/doraemon-3.jpg" alt="Ảnh Doraemon minh hoạ 3"><span class="hint">/assets/doraemon-3.jpg</span></div>
+    <section id="lien-he" class="section contact reveal">
+      <h2>Liên hệ</h2>
+      <div class="card panel">
+        <p><b>Zalo:</b> <a href="https://zalo.me/0366374635" target="_blank" rel="noopener">0366 374 635</a><br>
+           <b>Điện thoại:</b> <a href="tel:+84366374635">+84 366 374 635</a></p>
+        <button class="btn" id="copyPhone">Copy số điện thoại</button>
+        <span id="copyNote" style="margin-left:10px;color:#9ab4ff"></span>
       </div>
-      <p class="muted" style="margin-top:10px">👉 Thay các đường dẫn ảnh trong thư mục <code>assets</code> của repo để hiển thị ảnh thực tế (tự chụp, được phép dùng, hoặc hình do thầy sở hữu).</p>
+      <div class="card panel">
+        <h3 style="margin-top:0">Mục tiêu</h3>
+        <p>Xây dựng các công cụ web học tập Toán – CNTT, trực quan, dễ tương tác, hiệu năng cao; đóng góp cho cộng đồng học sinh–sinh viên đam mê lập trình và Toán học.</p>
+      </div>
     </section>
   </main>
 
   <footer>
-    <div class="container">Trang fan do bạn tạo để học web • Không thương mại hoá nội dung.</div>
+    <div class="container">© 2025 Phan Thanh Hiếu • IT × Mathematics • Made with pure HTML/CSS/JS.</div>
   </footer>
 
   <script>
-    // ===== BONG BÓNG/SAO NỀN VỚI CANVAS =====
-    const cv = document.getElementById('bg');
-    const ctx = cv.getContext('2d');
-    let w,h,particles=[]; const COUNT=140;
-    function resize(){ w=cv.width=innerWidth; h=cv.height=innerHeight; }
-    addEventListener('resize',resize); resize();
-    function spawn(){
-      particles = Array.from({length:COUNT},()=>({
-        x: Math.random()*w,
-        y: Math.random()*h,
-        r: Math.random()*2.2+0.6,
-        vx:(Math.random()-.5)*0.3,
-        vy:Math.random()*0.3+0.1,
-        a: Math.random()*0.6+0.2
-      }));
+    // ===== 0) Helper =====
+    const $ = (s)=>document.querySelector(s);
+
+    // ===== 1) Matrix-style background with math symbols =====
+    const mcv = document.getElementById('matrix');
+    const mctx = mcv.getContext('2d');
+    let mw, mh, cols, drops; const fontSize=16;
+    const chars = '01∑∫πθλΩµΣ√∞≜≈≠≤≥→←αβγΔΦΨΩ';
+    function mResize(){
+      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      mcv.width = (mw = innerWidth) * dpr; mcv.height = (mh = innerHeight) * dpr; mctx.setTransform(dpr,0,0,dpr,0,0);
+      cols = Math.floor(mw / fontSize); drops = new Array(cols).fill( Math.random()*mh );
+      mctx.font = fontSize + 'px monospace';
     }
-    function tick(){
-      ctx.clearRect(0,0,w,h);
-      for(const p of particles){
-        p.x+=p.vx; p.y+=p.vy; if(p.x<0)p.x=w; if(p.x>w)p.x=0; if(p.y>h)p.y=0;
-        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        ctx.fillStyle=`rgba(121,210,255,${p.a})`; ctx.fill();
+    function mTick(){
+      mctx.fillStyle = 'rgba(7,16,33,0.18)'; mctx.fillRect(0,0,mw,mh);
+      for(let i=0;i<cols;i++){
+        const ch = chars[Math.floor(Math.random()*chars.length)];
+        mctx.fillStyle = Math.random()<.03? '#a78bfa' : '#22d3ee';
+        mctx.fillText(ch, i*fontSize, drops[i]*1.0);
+        if(drops[i]*fontSize > mh && Math.random()>.975) drops[i]=0; drops[i] += 0.9 + Math.random()*0.6;
       }
-      requestAnimationFrame(tick);
+      requestAnimationFrame(mTick);
     }
-    spawn(); tick();
+    addEventListener('resize', mResize); mResize(); mTick();
 
-    // ===== TYPEWRITER =====
-    const words=[
-      'Doraemon – mèo máy từ tương lai',
-      'Bạn thân của Nobita',
-      'Bảo bối kỳ diệu & những chuyến phiêu lưu'
+    // ===== 2) Typewriter headline =====
+    const headWords = [
+      'IT × Toán học',
+      'Web hiệu năng cao',
+      'Trực quan hoá kiến thức'
     ];
-    const el=document.getElementById('type');
-    let wi=0,ci=0,dir=1,hold=0;
-    function type(){
-      const w=words[wi];
+    const headEl = document.getElementById('type');
+    let wi=0,ci=0,dir=1,hold=0; function type(){
+      const w=headWords[wi];
       if(dir===1){ ci++; if(ci> w.length){ dir=-1; hold=18; }}
-      else if(dir===-1){ if(hold-->0){} else { ci--; if(ci===0){ dir=1; wi=(wi+1)%words.length; }}}
-      el.textContent=w.slice(0,ci);
-      setTimeout(type, ci===0? 220: 60);
-    }
-    type();
+      else if(dir===-1){ if(hold-->0){} else { ci--; if(ci===0){ dir=1; wi=(wi+1)%headWords.length; }}}
+      headEl.textContent=w.slice(0,ci); setTimeout(type, ci===0? 220: 60);
+    } type();
 
-    // ===== TILT HOVER CHO CARDS =====
-    const cards = document.querySelectorAll('#cards .card');
-    cards.forEach(card=>{
-      const r=10; // độ nghiêng
-      card.addEventListener('mousemove',e=>{
-        const b=card.getBoundingClientRect();
-        const px=(e.clientX-b.left)/b.width, py=(e.clientY-b.top)/b.height;
-        const rx=(.5-py)*r, ry=(px-.5)*r;
-        card.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg) translateY(-2px)`;
-      });
-      card.addEventListener('mouseleave',()=>{card.style.transform='';});
-    });
-
-    // ===== PARALLAX NHẸ CHO SVG =====
-    const svg=document.getElementById('d-svg');
-    document.addEventListener('mousemove',e=>{
-      const cx=innerWidth/2, cy=innerHeight/2; const dx=(e.clientX-cx)/cx, dy=(e.clientY-cy)/cy;
-      svg.style.transform=`translate(${dx*8}px,${dy*6}px)`;
-    });
-
-    // ===== SCROLL REVEAL =====
+    // ===== 3) Scroll reveal =====
     const obs=new IntersectionObserver((ents)=>{
       ents.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('on'); obs.unobserve(en.target); } });
     },{ threshold:.1});
     document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+    // ===== 4) Tilt hover cards =====
+    document.querySelectorAll('.cards .card, .panel').forEach(card=>{
+      const r=8; card.addEventListener('mousemove',e=>{
+        const b=card.getBoundingClientRect(); const px=(e.clientX-b.left)/b.width, py=(e.clientY-b.top)/b.height;
+        const rx=(.5-py)*r, ry=(px-.5)*r; card.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg)`;
+      }); card.addEventListener('mouseleave',()=>{card.style.transform='';});
+    });
+
+    // ===== 5) Plotter =====
+    const pcv = document.getElementById('plot'); const pctx = pcv.getContext('2d');
+    let pw,ph,ox,oy,scale=50,t=0; // 50px = 1 đơn vị
+    function pResize(){
+      const dpr=Math.min(2, devicePixelRatio||1); pw=pcv.clientWidth; ph=pcv.clientHeight; pcv.width=pw*dpr; pcv.height=ph*dpr; pctx.setTransform(dpr,0,0,dpr,0,0);
+      ox=pw/2; oy=ph/2;
+    }
+    addEventListener('resize', pResize); pResize();
+    const fnPicker=$('#fnPicker'), A=$('#A'), B=$('#B'), SPD=$('#SPD');
+    function grid(){
+      pctx.fillStyle='#08142a'; pctx.fillRect(0,0,pw,ph);
+      pctx.strokeStyle='rgba(154,180,255,.25)'; pctx.lineWidth=1; pctx.beginPath();
+      for(let x=ox%scale;x<pw;x+=scale){ pctx.moveTo(x,0); pctx.lineTo(x,ph);} for(let y=oy%scale;y<ph;y+=scale){ pctx.moveTo(0,y); pctx.lineTo(pw,y);} pctx.stroke();
+      // trục
+      pctx.strokeStyle='rgba(34,211,238,.8)'; pctx.lineWidth=2; pctx.beginPath(); pctx.moveTo(0,oy); pctx.lineTo(pw,oy); pctx.moveTo(ox,0); pctx.lineTo(ox,ph); pctx.stroke();
+    }
+    function plot(){
+      grid(); pctx.save(); pctx.translate(ox,oy); pctx.scale(1,-1);
+      pctx.strokeStyle='#a78bfa'; pctx.lineWidth=2; pctx.beginPath();
+      const f=fnPicker.value; const a=parseFloat(A.value), b=parseFloat(B.value); const step=2/scale; // bước theo px
+      let first=true; for(let x=-ox/scale; x< (pw-ox)/scale; x+=step){
+        let y=0; if(f==='sin') y=a*Math.sin(b*x + t); else if(f==='cos') y=a*Math.cos(b*x + t);
+        else if(f==='quad'){ const aa=.6, bb=-.2, cc=-.2; y=(aa*Math.pow(x,2)+bb*x+cc); }
+        else if(f==='logistic'){ y=1/(1+Math.exp(-x)) - .5; }
+        const X=x*scale, Y=y*scale; if(first){ pctx.moveTo(X,Y); first=false;} else pctx.lineTo(X,Y);
+      }
+      pctx.stroke(); pctx.restore();
+      t+= parseFloat(SPD.value)/30; requestAnimationFrame(plot);
+    } plot();
+
+    // ===== 6) Prime factorization =====
+    function factor(n){ const fac=[]; let d=2; while(d*d<=n){ let c=0; while(n%d===0){n/=d;c++;} if(c) fac.push([d,c]); d+= (d===2?1:2); } if(n>1) fac.push([n,1]); return fac; }
+    const out=$('#factOut');
+    $('#factBtn').addEventListener('click',()=>{
+      const n= parseInt($('#num').value,10); if(!(n>=2&&n<=1e7)){ out.textContent='Vui lòng nhập 2…10⁷'; return; }
+      const fac = factor(n); const tex = n + ' = ' + fac.map(([p,e])=> e>1? `${p}^{${e}}` : p).join(' \\cdot ');
+      out.innerHTML = `$$${tex}$$`;
+      if(window.MathJax){ MathJax.typesetPromise && MathJax.typesetPromise([out]); }
+    });
+
+    // ===== 7) Rotation matrix visualization =====
+    const rcv=$('#rot'), rctx=rcv.getContext('2d'); let rw,rh,theta=0;
+    function rResize(){ const dpr=Math.min(2, devicePixelRatio||1); rw=rcv.clientWidth; rh=rcv.clientHeight; rcv.width=rw*dpr; rcv.height=rh*dpr; rctx.setTransform(dpr,0,0,dpr,0,0);} rResize(); addEventListener('resize', rResize);
+    function rTick(){ rctx.fillStyle='#08142a'; rctx.fillRect(0,0,rw,rh); const cx=rw/2, cy=rh/2; const R=120;
+      // trục
+      rctx.strokeStyle='rgba(154,180,255,.25)'; rctx.beginPath(); rctx.moveTo(0,cy); rctx.lineTo(rw,cy); rctx.moveTo(cx,0); rctx.lineTo(cx,rh); rctx.stroke();
+      // vector gốc (1,0)
+      rctx.strokeStyle='#22d3ee'; rctx.lineWidth=3; rctx.beginPath(); rctx.moveTo(cx,cy); rctx.lineTo(cx+R,cy); rctx.stroke();
+      // vector sau xoay
+      const x= Math.cos(theta), y=Math.sin(theta);
+      rctx.strokeStyle='#a78bfa'; rctx.beginPath(); rctx.moveTo(cx,cy); rctx.lineTo(cx+R*x, cy-R*y); rctx.stroke();
+      // ma trận R(θ)
+      const boxW=210, boxH=64; rctx.fillStyle='rgba(12,26,48,.7)'; rctx.strokeStyle='rgba(154,180,255,.25)'; rctx.lineWidth=1; rctx.beginPath(); rctx.roundRect(cx-boxW/2, 16, boxW, boxH, 12); rctx.fill(); rctx.stroke();
+      rctx.fillStyle='#cfe0ff'; rctx.font='14px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+      rctx.fillText(`R(θ) = [ cos θ   -sin θ ]`, cx-boxW/2+16, 40);
+      rctx.fillText(`        [ sin θ    cos θ ]`, cx-boxW/2+16, 62);
+      theta += 0.02; requestAnimationFrame(rTick);
+    } if(CanvasRenderingContext2D.prototype.roundRect===undefined){ CanvasRenderingContext2D.prototype.roundRect=function(x,y,w,h,r){ this.moveTo(x+r,y); this.arcTo(x+w,y,x+w,y+h,r); this.arcTo(x+w,y+h,x,y+h,r); this.arcTo(x,y+h,x,y,r); this.arcTo(x,y,x+w,y,r); return this; }; }
+    rTick();
+
+    // ===== 8) Copy phone =====
+    $('#copyPhone').addEventListener('click', async ()=>{
+      try{ await navigator.clipboard.writeText('0366374635'); $('#copyNote').textContent='Đã copy ✔'; setTimeout(()=>$('#copyNote').textContent='',2000);}catch(e){ $('#copyNote').textContent='Trình duyệt không hỗ trợ copy'; }
+    });
+  </script>
+
+  <!-- Schema.org Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Phan Thanh Hiếu",
+    "jobTitle": "IT & Mathematics",
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Đại học Sư phạm – Đại học Huế"
+    },
+    "url": "https://example.com/",
+    "telephone": "+84 366 374 635",
+    "sameAs": ["https://zalo.me/0366374635"]
+  }
   </script>
 </body>
 </html>
